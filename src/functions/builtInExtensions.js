@@ -36,6 +36,13 @@ export default [
       </category>`,
   },
   {
+    id: "Runtime",
+    name: "Runtime Extensions",
+    xml: `<category name="Runtime" colour="#32a2c0">
+       
+      </category>`,
+  },
+  {
     id: "pen",
     name: "Pen",
     xml: `<category name="Pen" colour="#0fbd8c">
