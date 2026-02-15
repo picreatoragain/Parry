@@ -85,8 +85,6 @@ function textToBlock(block, text, fields) {
 } else {
   block.appendDummyInput().appendField("[" + inputName + "]");
 }
-   const field = new Blockly.FieldDropdown(menuItems);
-      block.appendDummyInput().appendField(field, inputName);
     lastIndex = regex.lastIndex;
   }
 
