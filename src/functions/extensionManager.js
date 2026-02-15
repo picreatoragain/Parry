@@ -66,6 +66,8 @@ function textToBlock(block, text, fields) {
     const inputName = match[1].trim();
     const spec = fields?.[inputName];
 
+    if (blockType === "bool") { block.appendValueInput(inputName).setCheck(spec?.type || null); }
+
   if (spec?.kind === "statement") {
   block
     .appendStatementInput(inputName)
