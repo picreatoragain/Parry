@@ -66,7 +66,7 @@ function textToBlock(block, text, fields) {
     const inputName = match[1].trim();
     const spec = fields?.[inputName];
 
-    if (spec?.kind === "statement" || spec?.kind === "output") {
+    if (spec?.kind === "statement") {
       block
         .appendStatementInput(inputName)
         .setCheck(spec?.accepts || "default");
@@ -76,12 +76,13 @@ function textToBlock(block, text, fields) {
       const menuItems = spec.items.map((item) =>
         typeof item === "string" ? [item, item] : [item.text, item.value]
       );
-      const field = new Blockly.FieldDropdown(menuItems);
-      block.appendDummyInput().appendField(field, inputName);
-    } else {
+   
+    }
+    else {
       block.appendDummyInput().appendField("[" + inputName + "]");
     }
-
+   const field = new Blockly.FieldDropdown(menuItems);
+      block.appendDummyInput().appendField(field, inputName);
     lastIndex = regex.lastIndex;
   }
 
@@ -134,7 +135,11 @@ export async function registerExtension(extClass) {
         } else if (blockDef.type === "output") {
           this.setOutput(true, blockDef.outputType);
           if (blockDef.outputShape) this.setOutputShape(blockDef.outputShape);
-        } else {
+        } else if (blockDef.type === "operate") {
+       this.setOutput(true, blockDef.outputType || null);
+       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+        }
+        else {
           console.warn(
             `Invalid block type for ${blockDef}, using statement instead`
           );
