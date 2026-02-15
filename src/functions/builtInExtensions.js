@@ -39,7 +39,7 @@ export default [
     id: "Runtime",
     name: "Runtime Extensions",
     xml: `<category name="Runtime" colour="#32a2c0">
-    
+    </category>,
   },
   {
     id: "pen",
