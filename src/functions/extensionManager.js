@@ -137,10 +137,7 @@ export async function registerExtension(extClass) {
         } else if (blockDef.type === "output") {
           this.setOutput(true, blockDef.outputType);
           if (blockDef.outputShape) this.setOutputShape(blockDef.outputShape);
-        } else if (blockDef.type === "bool") {
-       this.setOutput(true, blockDef.outputType || null);
-       this.setOutputShape(Blockly.OUTPUT_SHAPE_HEXAGONAL);
-        }
+        } 
         else {
           console.warn(
             `Invalid block type for ${blockDef}, using statement instead`
@@ -157,6 +154,10 @@ export async function registerExtension(extClass) {
         this.setColour(blockDef?.color || category.color);
 
         this.setInputsInline(true);
+        if (blockDef.type === "bool") {
+       this.setOutput(true, blockDef.outputType || null);
+       this.setOutputShape(Blockly.OUTPUT_SHAPE_HEXAGONAL);
+        }
       },
     };
 
