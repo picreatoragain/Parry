@@ -1,4 +1,4 @@
-import * as Blockly from "blockly";
+ import * as Blockly from "blockly";
 import * as BlocklyJS from "blockly/javascript";
 import { activeExtensions } from "../scripts/editor";
 
@@ -66,7 +66,7 @@ function textToBlock(block, text, fields) {
     const inputName = match[1].trim();
     const spec = fields?.[inputName];
 
-    if (spec?.kind === "statement") {
+    if (spec?.kind === "statement" || spec?.kind === "output") {
       block
         .appendStatementInput(inputName)
         .setCheck(spec?.accepts || "default");
@@ -126,7 +126,7 @@ export async function registerExtension(extClass) {
       init: function () {
         textToBlock(this, blockDef.text, blockDef.fields);
 
-        if (blockDef.type === "statement" || blockDef.type === "output") {
+        if (blockDef.type === "statement") {
           this.setPreviousStatement(true, blockDef.statementType || "default");
           this.setNextStatement(true, blockDef.statementType || "default");
         } else if (blockDef.type === "cap") {
