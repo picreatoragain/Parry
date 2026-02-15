@@ -30,6 +30,30 @@ Blockly.Blocks["key_pressed"] = {
   },
 };
 
+Blockly.Blocks["key_pressed_once"] = {
+  init: function () {
+    this.appendDummyInput()
+      .appendField("is")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["any", "any"],
+          ["space", " "],
+          ["enter", "Enter"],
+          ["escape", "Escape"],
+          ["up arrow", "ArrowUp"],
+          ["down arrow", "ArrowDown"],
+          ["left arrow", "ArrowLeft"],
+          ["right arrow", "ArrowRight"],
+          ...normalKeys.map((i) => [i, i]),
+        ]),
+        "KEY"
+      )
+      .appendField("key hit");
+    this.setOutput(true, "Boolean");
+    this.setColour("#5CB1D6");
+  },
+};
+
 Blockly.Blocks["get_mouse_position"] = {
   init: function () {
     this.appendDummyInput()
