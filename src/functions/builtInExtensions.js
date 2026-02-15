@@ -39,71 +39,7 @@ export default [
     id: "Runtime",
     name: "Runtime Extensions",
     xml: `<category name="Runtime" colour="#32a2c0">
-        onClick: popup => {
-            const input = popup.querySelector('[data-row="1"][data-col="1"]');
-            const hardcode = "https://raw.githubusercontent.com/picreatoragain/Parry/main/src/scripts/runtimevariable.js"
-            const userCode = fetch(hardcode);
-            const iframe = document.createElement("iframe");
-            iframe.style.display = "none";
-            iframe.sandbox = "allow-scripts";
-            iframe.srcdoc = `
-                <script>
-                  "use strict",
-                  const registerExtension = (def) => {
-                    parent.postMessage({ type: "registerExtension", code: def.toString() }, "*");
-                  };
-                  window.addEventListener("message", (event) => {
-                    if (event.data && event.data.type === "runCode") {
-                      try {
-                        eval(event.data.code);
-                      } catch (err) {
-                        parent.postMessage({ type: "error", error: err.message }, "*");
-                      }
-                    }
-                  });
-                  parent.postMessage({ type: "iframeReady" }, "*");
-                </script>
-              `;
-            document.body.appendChild(iframe);
-
-            const handleMessage = event => {
-              if (!event.data) return;
-
-              switch (event.data.type) {
-                case "registerExtension":
-                  try {
-                    const extensionCode = "(" + event.data.code + ")";
-                    const ExtensionClass = eval(extensionCode);
-                    registerExtension(ExtensionClass);
-
-                    console.log("extension registered:", ExtensionClass);
-                  } catch (error) {
-                    console.error("Error in extension:", error);
-                    alert("Error in extension: " + error);
-                  }
-
-                  iframe.remove();
-                  window.removeEventListener("message", handleMessage);
-                  break;
-                case "error":
-                  console.error("Error in extension:", event.data.error);
-                  alert("Error in extension: " + event.data.error);
-                  window.removeEventListener("message", handleMessage);
-                  break;
-                case "iframeReady":
-                  iframe.contentWindow.postMessage(
-                    { type: "runCode", code: userCode },
-                    "*",
-                  );
-                  break;
-              }
-            };
-
-            window.addEventListener("message", handleMessage);
-
-            popup.remove();
-            document.getElementById("extensions-popup")?.classList.add("hidden");
-          }`,
+    
   },
   {
     id: "pen",
