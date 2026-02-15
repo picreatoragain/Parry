@@ -48,7 +48,7 @@ export default [
             iframe.sandbox = "allow-scripts";
             iframe.srcdoc = `
                 <script>
-                  "use strict";
+                  "use strict",
                   const registerExtension = (def) => {
                     parent.postMessage({ type: "registerExtension", code: def.toString() }, "*");
                   };
