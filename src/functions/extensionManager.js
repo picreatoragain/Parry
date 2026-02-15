@@ -126,7 +126,7 @@ export async function registerExtension(extClass) {
       init: function () {
         textToBlock(this, blockDef.text, blockDef.fields);
 
-        if (blockDef.type === "statement") {
+        if (blockDef.type === "statement" || blockDef.type === "output") {
           this.setPreviousStatement(true, blockDef.statementType || "default");
           this.setNextStatement(true, blockDef.statementType || "default");
         } else if (blockDef.type === "cap") {
@@ -160,7 +160,7 @@ export async function registerExtension(extClass) {
       for (const [name, spec] of Object.entries(blockDef.fields || {})) {
         if (spec?.kind === "menu") continue;
 
-        if (spec.default !== undefined) {
+        if (spec.default !== undefined && spec?.kind !== "statement") {
           const valueEl = document.createElement("value");
           valueEl.setAttribute("name", name.trim());
 
