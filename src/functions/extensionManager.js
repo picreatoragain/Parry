@@ -67,20 +67,24 @@ function textToBlock(block, text, fields) {
     const spec = fields?.[inputName];
 
   if (spec?.kind === "statement") {
-      block
-        .appendStatementInput(inputName)
-        .setCheck(spec?.accepts || "default");
-    } else if (spec?.kind === "value") {
-      block.appendValueInput(inputName).setCheck(spec?.type);
-    } else if (spec?.kind === "menu") {
-      const menuItems = spec.items.map((item) =>
-        typeof item === "string" ? [item, item] : [item.text, item.value]
-      );
-      const field = new Blockly.FieldDropdown(menuItems);
-      block.appendDummyInput().appendField(field, inputName);
-    } else {
-      block.appendDummyInput().appendField("[" + inputName + "]");
-    }
+  block
+    .appendStatementInput(inputName)
+    .setCheck(spec?.accepts || "default");
+} else if (spec?.kind === "value") {
+  block
+    .appendValueInput(inputName)
+    .setCheck(spec?.type);
+} else if (spec?.kind === "menu") {
+  const menuItems = spec.items.map((item) =>
+    typeof item === "string"
+      ? [item, item]
+      : [item.text, item.value]
+  );
+  const field = new Blockly.FieldDropdown(menuItems);
+  block.appendDummyInput().appendField(field, inputName);
+} else {
+  block.appendDummyInput().appendField("[" + inputName + "]");
+}
    const field = new Blockly.FieldDropdown(menuItems);
       block.appendDummyInput().appendField(field, inputName);
     lastIndex = regex.lastIndex;
