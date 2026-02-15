@@ -66,7 +66,7 @@ function textToBlock(block, text, fields) {
     const inputName = match[1].trim();
     const spec = fields?.[inputName];
 
-    if (spec?.kind === "statement") {
+  if (spec?.kind === "statement") {
       block
         .appendStatementInput(inputName)
         .setCheck(spec?.accepts || "default");
@@ -76,9 +76,9 @@ function textToBlock(block, text, fields) {
       const menuItems = spec.items.map((item) =>
         typeof item === "string" ? [item, item] : [item.text, item.value]
       );
-   
-    }
-    else {
+      const field = new Blockly.FieldDropdown(menuItems);
+      block.appendDummyInput().appendField(field, inputName);
+    } else {
       block.appendDummyInput().appendField("[" + inputName + "]");
     }
    const field = new Blockly.FieldDropdown(menuItems);
