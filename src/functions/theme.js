@@ -66,7 +66,7 @@ const darkTheme = Blockly.Theme.defineTheme("customDarkTheme", {
   base: Blockly.Themes.Classic,
   blockStyles: blockStyles,
   componentStyles: {
-    workspaceBackgroundColour: "#1a1e25",
+    workspaceBackgroundColour: "#13450c",
     toolboxBackgroundColour: "#303236",
     toolboxForegroundColour: "#fff",
     flyoutBackgroundColour: "#212327",
@@ -169,7 +169,7 @@ export function setupThemeButton(workspace) {
             },
           ],
           [
-            "Show Rarry logo on toolbar:",
+            "Show Parry logo on toolbar:",
             {
               type: "checkbox",
               checked:
