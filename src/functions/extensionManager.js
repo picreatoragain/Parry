@@ -82,23 +82,6 @@ function textToBlock(block, text, fields) {
       block.appendDummyInput().appendField("[" + inputName + "]");
     }
 
-        if (spec?.kind === "output") {
-      block
-        .appendStatementInput(inputName)
-        .setCheck(spec?.accepts || "default");
-    } else if (spec?.kind === "value") {
-      block.appendValueInput(inputName).setCheck(spec?.type);
-    } else if (spec?.kind === "menu") {
-      const menuItems = spec.items.map((item) =>
-        typeof item === "string" ? [item, item] : [item.text, item.value]
-      );
-      const field = new Blockly.FieldDropdown(menuItems);
-      block.appendDummyInput().appendField(field, inputName);
-    } else {
-      block.appendDummyInput().appendField("[" + inputName + "]");
-    }
-    
-
     lastIndex = regex.lastIndex;
   }
 
@@ -177,7 +160,7 @@ export async function registerExtension(extClass) {
       for (const [name, spec] of Object.entries(blockDef.fields || {})) {
         if (spec?.kind === "menu") continue;
 
-        if (spec.default !== undefined && spec?.kind !== "statement") {
+        if (spec.default !== undefined) {
           const valueEl = document.createElement("value");
           valueEl.setAttribute("name", name.trim());
 
