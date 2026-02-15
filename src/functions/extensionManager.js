@@ -137,9 +137,9 @@ export async function registerExtension(extClass) {
         } else if (blockDef.type === "output") {
           this.setOutput(true, blockDef.outputType);
           if (blockDef.outputShape) this.setOutputShape(blockDef.outputShape);
-        } else if (blockDef.type === "operate") {
+        } else if (blockDef.type === "bool") {
        this.setOutput(true, blockDef.outputType || null);
-       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+       this.setOutputShape(Blockly.OUTPUT_SHAPE_HEXAGONAL);
         }
         else {
           console.warn(
