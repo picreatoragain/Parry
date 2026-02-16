@@ -128,7 +128,7 @@ export async function registerExtension(extClass) {
     Blockly.Blocks[blockType] = {
       init: function () {
         textToBlock(this, blockDef.text, blockDef.fields);
-        else if (blockDef.type !== "bool") {
+         if (blockDef.type === "bool") {
           this.setOutput(true, blockDef.outputType || null);
           this.setOutputShape(Blockly.OUTPUT_SHAPE_HEXAGONAL);
          }
