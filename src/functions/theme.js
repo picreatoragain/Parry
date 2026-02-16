@@ -123,16 +123,17 @@ export function setHeaderColor(color) {
   if (!color) root.style.removeProperty("--header-color");
   else root.style.setProperty("--header-color", color);
 }
-export function setWorkspaceBackground(color, workspace) {
-  localStorage.setItem("workspaceBackgroundColour", color); }
-if (!color)
-{
-  root.style.removeproperty("--workspace-background");
-  if (workspace) workspace.getCanvas().style.backgroundCOlor = "";
-} else {
-  root.style.setProperty("--workspace-background", color);
-  if (workspace) workspace.getCanvas().style.backgroundColor = color;
-  
+export function setWorkspaceBackground(colour, workspace) {
+  localStorage.setItem("workspaceBackgroundColour", colour);
+  if (!workspace) return;
+  const theme = Blockly.Theme.defineTheme("dynamicWorkspaceBg", {
+    base: workspace.getTheme(),
+    componentStyles: {
+      workspaceBackgroundColour: colour || undefined,
+    },
+  });
+
+  workspace.setTheme(theme);
 }
 
 export function toggleStageLeft(left) {
@@ -208,13 +209,13 @@ export function setupThemeButton(workspace) {
             "Background color:",
             {
               type: "color",
-              value: localStorage.getItem("workspaceBackgroundColor") || "",
-              onChange: value =>  setWorkspaceBackground(value),
+              value: localStorage.getItem("workspaceBackgroundColour") || "",
+              onChange: value => setWorkspaceBackground(value, workspace),
             },
             {
               type: "button",
               label: "Reset",
-              onClick: () =>  setWorkspaceBackground(""),
+              onClick: () => setWorkspaceBackground("", workspace),
             },
           ],
           [
