@@ -153,9 +153,6 @@ workspace.setTheme(theme);
 }
 
 
-  workspace.setTheme(theme);
-}
-
 export function toggleStageLeft(left) {
 localStorage.setItem("stageLeft", String(left));
 
