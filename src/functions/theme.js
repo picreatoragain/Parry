@@ -13,6 +13,7 @@ const rarryToolbar =
 const toolboxPosition =
   localStorage.getItem("toolboxPosition") || "space-between";
 const headerColor = localStorage.getItem("headerColor") || "";
+const workspaceBackgroundColour = localStorage.getItem("workspaceBackgroundColour") || "";
 const stageLeft = localStorage.getItem("stageLeft") === "true" ?? false;
 
 const blockStyles = {
@@ -121,6 +122,14 @@ export function setHeaderColor(color) {
 
   if (!color) root.style.removeProperty("--header-color");
   else root.style.setProperty("--header-color", color);
+}
+
+
+export function workspaceBackgroundColour(color) {
+  localStorage.setItem("headerColor", color);
+
+  if (!color) root.style.removeProperty("--workspace-color");
+  else root.style.setProperty("--workscape-color", color);
 }
 
 export function toggleStageLeft(left) {
