@@ -251,6 +251,8 @@ type: "button",
 label: "Reset",
 onClick: () => setWorkspaceBackground("", workspace),
 },
+  ]
+  [
 "Toolbox color:",
 {
 type: "color",
