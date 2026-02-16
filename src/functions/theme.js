@@ -15,6 +15,7 @@ localStorage.getItem("toolboxPosition") || "space-between";
 const headerColor = localStorage.getItem("headerColor") || "";
 const workspaceBackgroundColour = localStorage.getItem("workspaceBackgroundColour") || "";
 const toolboxBackgroundColour = localStorage.getItem("toolboxBackgroundColour") || "";
+const setToolboxTextColor = localStorage.getItem("setToolboxTextColor") || "";
 const stageLeft = localStorage.getItem("stageLeft") === "true" ?? false;
 
 const blockStyles = {
@@ -127,7 +128,6 @@ else root.style.setProperty("--header-color", color);
 export function setWorkspaceBackground(colour, workspace) {
 localStorage.setItem("workspaceBackgroundColour", colour);
 if (!workspace) return;
-
 const theme = Blockly.Theme.defineTheme("dynamicWorkspaceBg", {
 base: workspace.getTheme(),
 componentStyles: {
@@ -136,6 +136,16 @@ workspaceBackgroundColour: colour || undefined,
 });
 
 workspace.setTheme(theme);
+}
+export function setToolboxTextColor(colour, workspace) {
+  localStorage.setItem("toolboxTextColour", colour);
+  if (!workspace) return;
+  const theme = Blockly.Theme.defineTheme("dynamicToolboxText", {
+    base: workspace.getTheme(),
+    componentStyles: { toolboxForegroundColour: colour || undefined, },
+  });
+
+  workspace.setTheme(theme);
 }
 
 export function setToolboxBackground(colour, workspace) {
@@ -249,6 +259,17 @@ onChange: value => setToolboxBackground(value, workspace),
 type: "button",
 label: "Reset",
 onClick: () => setToolboxBackground("", workspace),
+},
+     "Toolbox text Color:",
+{
+type: "color",
+value: localStorage.getItem("toolboxBackgroundColour") || "",
+onChange: value => setToolboxTextColor(value, workspace),
+},
+{
+type: "button",
+label: "Reset",
+onClick: () => setToolboxTextColor("", workspace),
 },
 ],
 [
