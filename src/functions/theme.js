@@ -14,6 +14,7 @@ const toolboxPosition =
   localStorage.getItem("toolboxPosition") || "space-between";
 const headerColor = localStorage.getItem("headerColor") || "";
 const workspaceBackgroundColour = localStorage.getItem("workspaceBackgroundColour") || "";
+const toolboxBackgroundColour = localStorage.getItem("toolboxBackgroundColour") || "";
 const stageLeft = localStorage.getItem("stageLeft") === "true" ?? false;
 
 const blockStyles = {
@@ -132,6 +133,16 @@ export function setWorkspaceBackground(colour, workspace) {
       workspaceBackgroundColour: colour || undefined,
     },
   });
+  // copy and paste :fie:
+  export function toolboxBackgroundColour(colour, workspace) {
+  localStorage.setItem("toolboxBackgroundColour", colour);
+  if (!workspace) return;
+  const theme = Blockly.Theme.defineTheme("dynamictoolboxBg", {
+    base: workspace.getTheme(),
+    componentStyles: {
+      toolboxBackgroundColour: colour || undefined,
+    },
+  });
 
   workspace.setTheme(theme);
 }
@@ -218,6 +229,17 @@ if (savedBg && workspace) { setWorkspaceBackground(savedBg, workspace);}
               type: "button",
               label: "Reset",
               onClick: () => setWorkspaceBackground("", workspace),
+            },
+              "Toolbox color:",
+            {
+              type: "color",
+              value: localStorage.getItem("toolboxBackgroundColour") || "",
+              onChange: value => setToolboxBackground(value, workspace),
+            },
+            {
+              type: "button",
+              label: "Reset",
+              onClick: () => setToolboxBackground("", workspace),
             },
           ],
           [
