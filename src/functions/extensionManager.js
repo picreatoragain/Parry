@@ -142,6 +142,10 @@ export async function registerExtension(extClass) {
           console.warn(
             `Invalid block type for ${blockDef}, using statement instead`
           );
+           if (blockDef.type !== "bool") {
+           this.setPreviousStatement(true, blockDef.statementType || "default");
+           this.setNextStatement(true, blockDef.statementType || "default");
+         }
           this.setPreviousStatement(true, blockDef.statementType || "default");
           this.setNextStatement(true, blockDef.statementType || "default");
         }
