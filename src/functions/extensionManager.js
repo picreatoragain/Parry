@@ -134,18 +134,18 @@ export async function registerExtension(extClass) {
           this.setNextStatement(true, blockDef.statementType || "default");
         } else if (blockDef.type === "cap") {
           this.setPreviousStatement(true, blockDef.statementType || "default");
-        } else if (blockDef.type === "output") {
-          this.setOutput(true, blockDef.outputType);
-          if (blockDef.outputShape) this.setOutputShape(blockDef.outputShape);
-        } 
-        else {
-          console.warn(
-            `Invalid block type for ${blockDef}, using statement instead`
-          );
-           if (blockDef.type !== "bool") {
+        } else if (blockDef.type !== "bool") {
            this.setPreviousStatement(true, blockDef.statementType || "default");
            this.setNextStatement(true, blockDef.statementType || "default");
          }
+        else if (blockDef.type === "output") {
+          this.setOutput(true, blockDef.outputType);
+          if (blockDef.outputShape) this.setOutputShape(blockDef.outputShape);
+        } else {
+          console.warn(
+            `Invalid block type for ${blockDef}, using statement instead`
+          );
+           
           this.setPreviousStatement(true, blockDef.statementType || "default");
           this.setNextStatement(true, blockDef.statementType || "default");
         }
