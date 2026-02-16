@@ -150,6 +150,8 @@ export function setupThemeButton(workspace) {
   toggleStageLeft(stageLeft);
   setToolboxPosition(toolboxPosition);
   setHeaderColor(headerColor);
+const savedBg = localStorage.getItem("workspaceBackgroundColour");
+if (savedBg && workspace) { setWorkspaceBackground(savedBg, workspace);}
 
   const themeButton = document.getElementById("theme-button");
   if (themeButton)
