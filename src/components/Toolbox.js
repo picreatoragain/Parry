@@ -19,6 +19,7 @@ function shadowText(value = "ABC") {
 const Toolbox = `
   <category name="Events" colour="#ffc400">
     ${block("when_flag_clicked")}
+    ${block("when_stop_clicked")}
     ${block("project_timer")}
     ${sep("50")}
     ${block("when_key_clicked")}
