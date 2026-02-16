@@ -273,7 +273,7 @@ onChange: value => setToolboxTextColor(value, workspace),
 {
 type: "button",
 label: "Reset",
-onClick: () => setToolboxTextColor("", workspace),
+onClick: () => setToolboxTextColor(undefined, workspace),
 },
 ],
 [
