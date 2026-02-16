@@ -193,6 +193,17 @@ export function setupThemeButton(workspace) {
               label: "Reset",
               onClick: () => setHeaderColor(""),
             },
+            "Background color:",
+            {
+              type: "color",
+              value: localStorage.getItem("headerColor") || "",
+              onChange: value =>  workspaceBackgroundColour(value),
+            },
+            {
+              type: "button",
+              label: "Reset",
+              onClick: () =>  workspaceBackgroundColour(""),
+            },
           ],
           [
             "Toolbar position:",
