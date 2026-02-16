@@ -128,16 +128,16 @@ export async function registerExtension(extClass) {
     Blockly.Blocks[blockType] = {
       init: function () {
         textToBlock(this, blockDef.text, blockDef.fields);
-
-        if (blockDef.type === "statement") {
+        else if (blockDef.type !== "bool") {
+          this.setOutput(true, blockDef.outputType || null);
+          this.setOutputShape(Blockly.OUTPUT_SHAPE_HEXAGONAL);
+         }
+        else if (blockDef.type === "statement") {
           this.setPreviousStatement(true, blockDef.statementType || "default");
           this.setNextStatement(true, blockDef.statementType || "default");
         } else if (blockDef.type === "cap") {
           this.setPreviousStatement(true, blockDef.statementType || "default");
-        } else if (blockDef.type !== "bool") {
-           this.setPreviousStatement(true, blockDef.statementType || "default");
-           this.setNextStatement(true, blockDef.statementType || "default");
-         }
+        } 
         else if (blockDef.type === "output") {
           this.setOutput(true, blockDef.outputType);
           if (blockDef.outputShape) this.setOutputShape(blockDef.outputShape);
@@ -158,10 +158,6 @@ export async function registerExtension(extClass) {
         this.setColour(blockDef?.color || category.color);
 
         this.setInputsInline(true);
-        if (blockDef.type === "bool") {
-       this.setOutput(true, blockDef.outputType || null);
-       this.setOutputShape(Blockly.OUTPUT_SHAPE_HEXAGONAL);
-        }
       },
     };
 
