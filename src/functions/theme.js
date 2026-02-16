@@ -181,7 +181,7 @@ const savedBg = localStorage.getItem("workspaceBackgroundColour");
 if (savedBg && workspace) { setWorkspaceBackground(savedBg, workspace);}
 const savedToolboxBg = localStorage.getItem("toolboxBackgroundColour");
 if (savedToolboxBg && workspace) { setToolboxBackground(savedToolboxBg, workspace);}
-  const savedToolboxText =localStorage.getItem("toolboxBackgroundColour");
+  const savedToolboxText =localStorage.getItem("toolboxTextColour");
 if (savedToolboxText && workspace) { setToolboxTextColor(savedToolboxText, workspace);}
 
 
