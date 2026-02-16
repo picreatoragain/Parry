@@ -123,7 +123,17 @@ export function setHeaderColor(color) {
   if (!color) root.style.removeProperty("--header-color");
   else root.style.setProperty("--header-color", color);
 }
-
+export function setWorkspaceBackground(color, workspace) {
+  localStorage.setItem("workspaceBackgroundColour", color);
+if (!color)
+{
+  root.style.removeproperty("--workspace-background");
+  if (workspace) workspace.getCanvas().style.backgroundCOlor = "";
+} else {
+  root.style.setProperty("--workspace-background", color);
+  if (workspace) workspace.getCanvas().style.backgroundColor = color;
+  
+}
 
 export function toggleStageLeft(left) {
   localStorage.setItem("stageLeft", String(left));
@@ -198,13 +208,13 @@ export function setupThemeButton(workspace) {
             "Background color:",
             {
               type: "color",
-              value: localStorage.getItem("headerColor") || "",
-              onChange: value =>  workspaceBackgroundColour(value),
+              value: localStorage.getItem("workspaceBackgroundColor") || "",
+              onChange: value =>  setWorkspaceBackground(value),
             },
             {
               type: "button",
               label: "Reset",
-              onClick: () =>  workspaceBackgroundColour(""),
+              onClick: () =>  setWorkspaceBackground(""),
             },
           ],
           [
