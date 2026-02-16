@@ -127,22 +127,31 @@ export function setHeaderColor(color) {
 export function setWorkspaceBackground(colour, workspace) {
   localStorage.setItem("workspaceBackgroundColour", colour);
   if (!workspace) return;
+
   const theme = Blockly.Theme.defineTheme("dynamicWorkspaceBg", {
     base: workspace.getTheme(),
     componentStyles: {
       workspaceBackgroundColour: colour || undefined,
     },
   });
-  // copy and paste :fie:
-  export function toolboxBackgroundColour(colour, workspace) {
+
+  workspace.setTheme(theme);
+}
+
+export function setToolboxBackground(colour, workspace) {
   localStorage.setItem("toolboxBackgroundColour", colour);
   if (!workspace) return;
-  const theme = Blockly.Theme.defineTheme("dynamictoolboxBg", {
+
+  const theme = Blockly.Theme.defineTheme("dynamicToolboxBg", {
     base: workspace.getTheme(),
     componentStyles: {
       toolboxBackgroundColour: colour || undefined,
     },
   });
+
+  workspace.setTheme(theme);
+}
+
 
   workspace.setTheme(theme);
 }
@@ -163,6 +172,9 @@ export function setupThemeButton(workspace) {
   setHeaderColor(headerColor);
 const savedBg = localStorage.getItem("workspaceBackgroundColour");
 if (savedBg && workspace) { setWorkspaceBackground(savedBg, workspace);}
+  const savedToolboxBg = localStorage.getItem("toolboxBackgroundColour");
+if (savedToolboxBg && workspace) { setToolboxBackground(savedToolboxBg, workspace);}
+
 
   const themeButton = document.getElementById("theme-button");
   if (themeButton)
