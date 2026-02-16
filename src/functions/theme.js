@@ -125,13 +125,6 @@ export function setHeaderColor(color) {
 }
 
 
-export function workspaceBackgroundColour(color) {
-  localStorage.setItem("headerColor", color);
-
-  if (!color) root.style.removeProperty("--workspace-color");
-  else root.style.setProperty("--workscape-color", color);
-}
-
 export function toggleStageLeft(left) {
   localStorage.setItem("stageLeft", String(left));
 
