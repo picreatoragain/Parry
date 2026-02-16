@@ -129,7 +129,7 @@ export async function registerExtension(extClass) {
       init: function () {
         textToBlock(this, blockDef.text, blockDef.fields);
          if (blockDef.type === "bool") {
-          this.setOutput(true, blockDef.outputType || null);
+          this.setOutput(true, "Boolean");
           this.setOutputShape(Blockly.OUTPUT_SHAPE_HEXAGONAL);
          }
         else if (blockDef.type === "statement") {
