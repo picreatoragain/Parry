@@ -15,7 +15,7 @@ localStorage.getItem("toolboxPosition") || "space-between";
 const headerColor = localStorage.getItem("headerColor") || "";
 const workspaceBackgroundColour = localStorage.getItem("workspaceBackgroundColour") || "";
 const toolboxBackgroundColour = localStorage.getItem("toolboxBackgroundColour") || "";
-const setToolboxTextColor = localStorage.getItem("setToolboxTextColor") || "";
+const setToolboxTextColor = localStorage.getItem("toolboxTextColour") || "";
 const stageLeft = localStorage.getItem("stageLeft") === "true" ?? false;
 
 const blockStyles = {
@@ -181,6 +181,7 @@ const savedBg = localStorage.getItem("workspaceBackgroundColour");
 if (savedBg && workspace) { setWorkspaceBackground(savedBg, workspace);}
 const savedToolboxBg = localStorage.getItem("toolboxBackgroundColour");
 if (savedToolboxBg && workspace) { setToolboxBackground(savedToolboxBg, workspace);}
+if (savedToolboxText && workspace) { setToolboxTextColor(savedToolboxText, workspace);}
 
 
 const themeButton = document.getElementById("theme-button");
@@ -263,7 +264,7 @@ onClick: () => setToolboxBackground("", workspace),
      "Toolbox text Color:",
 {
 type: "color",
-value: localStorage.getItem("toolboxBackgroundColour") || "",
+value: localStorage.getItem("toolboxTextColour") || "",
 onChange: value => setToolboxTextColor(value, workspace),
 },
 {
