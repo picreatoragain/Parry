@@ -124,7 +124,7 @@ export function setHeaderColor(color) {
   else root.style.setProperty("--header-color", color);
 }
 export function setWorkspaceBackground(color, workspace) {
-  localStorage.setItem("workspaceBackgroundColour", color);
+  localStorage.setItem("workspaceBackgroundColour", color); }
 if (!color)
 {
   root.style.removeproperty("--workspace-background");
