@@ -4,6 +4,14 @@ import config from "../config";
 import { cache } from "../cache";
 import { showPopup } from "./utils";
 import { attachAvatarChanger } from "./avatar";
+// stack overflow code
+function getContrastYIQ(hexcolor){
+    var r = parseInt(hexcolor.substring(1,3),16);
+    var g = parseInt(hexcolor.substring(3,5),16);
+    var b = parseInt(hexcolor.substring(5,7),16);
+    var yiq = ((r*299)+(g*587)+(b*114))/1000;
+    return (yiq >= 128) ? 'black' : 'white';
+}
 
 const root = document.documentElement;
 const theme = localStorage.getItem("theme") === "dark" ?? false;
@@ -121,9 +129,14 @@ export function setToolboxPosition(pos) {
 export function setHeaderColor(color) {
   localStorage.setItem("headerColor", color);
 
-  if (!color) root.style.removeProperty("--header-color");
-  else root.style.setProperty("--header-color", color);
+  if (!color) root.style.removeProperty("--header-color"); root.style.removeProperty("--header-text-color"); }
+  else {root.style.setProperty("--header-color", color);}
+  const textColor = getContrastYIQ(color);
+  root.style.setProperty("--header-color", color);
+  root.style.setProperty("--header-text-color", textColor);
 }
+
+
 export function setWorkspaceBackground(colour, workspace) {
   localStorage.setItem("workspaceBackgroundColour", colour);
   if (!workspace) return;
